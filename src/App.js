@@ -4,7 +4,8 @@ import './App.css';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Home from './Components/Home';
 import Search from './Components/Search';
-class BooksApp extends React.Component {
+
+class App extends React.Component {
     updateBookShelf = async (book, shelf) => {
         try {
             await BooksAPI.update(book, shelf);
@@ -25,4 +26,4 @@ class BooksApp extends React.Component {
     }
 }
 
-export default BooksApp;
+export default App;

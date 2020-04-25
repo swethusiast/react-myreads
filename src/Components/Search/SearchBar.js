@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 export const SearchBar = ({ handleChange }) => {
     return (
@@ -16,4 +17,7 @@ export const SearchBar = ({ handleChange }) => {
             </div>
         </div>
     );
+};
+SearchBar.propTypes = {
+    handleChange: PropTypes.func.isRequired,
 };

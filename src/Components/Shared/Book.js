@@ -32,4 +32,5 @@ export const Book = ({ book, updateBook }) => {
 };
 Book.propTypes = {
     book: PropTypes.object.isRequired,
+    updateBook: PropTypes.func.isRequired,
 };

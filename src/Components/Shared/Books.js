@@ -17,4 +17,5 @@ export const Books = ({ title, books, updateBook }) => {
 Books.propTypes = {
     title: PropTypes.string.isRequired,
     books: PropTypes.arrayOf(PropTypes.object).isRequired,
+    updateBook: PropTypes.func.isRequired,
 };
