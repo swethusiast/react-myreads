@@ -8,6 +8,7 @@ class BooksApp extends React.Component {
     updateBookShelf = async (book, shelf) => {
         try {
             await BooksAPI.update(book, shelf);
+            console.log(book, shelf);
             return true;
         } catch (err) {
             alert(err); // TypeError: failed to fetch

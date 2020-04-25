@@ -2,20 +2,35 @@ import React, { Component } from 'react';
 import { Books } from '../Shared/Books';
 import { SearchBar } from './SearchBar';
 import PropTypes from 'prop-types';
+import * as BooksAPI from './../../BooksAPI';
 
 export default class Search extends Component {
-    updateBook = async (book, shelf) => {
-        let update = await this.props.updateBookShelf(book, shelf);
-        if (update) {
-            this.getAllBooks();
+    state = {
+        searchResult: [],
+    };
+    updateBook = (book, shelf) => {
+        this.props.updateBookShelf(book, shelf);
+    };
+
+    search = async (query) => {
+        if (query.trim() !== '') {
+            BooksAPI.search(query.trim())
+                .then((res) => this.setState({ searchResult: res }))
+                .catch((error) => console.log(error.message));
         }
     };
+
     render() {
+        const { searchResult } = this.state;
         return (
             <div className="search-books">
-                <SearchBar />
+                <SearchBar handleChange={this.search} />
                 <div className="search-books-results">
-                    <Books />
+                    {searchResult.length === 0 ? (
+                        'Please search for a Book title or author.'
+                    ) : (
+                        <Books title={'Search Result'} books={searchResult} updateBook={this.updateBook} />
+                    )}
                 </div>
             </div>
         );
